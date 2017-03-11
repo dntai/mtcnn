@@ -507,9 +507,9 @@ def haveFace(img, facedetector):
 
 def main():
     #imglistfile = "./file.txt"
-    imglistfile = "/home/duino/project/mtcnn/error.txt"
+    #imglistfile = "/home/duino/project/mtcnn/error.txt"
     #imglistfile = "/home/duino/iactive/mtcnn/all.txt"
-    #imglistfile = "./imglist.txt"
+    imglistfile = "./imglist.txt"
     #imglistfile = "/home/duino/iactive/mtcnn/file_n.txt"
     #imglistfile = "/home/duino/iactive/mtcnn/file.txt"
     minsize = 20
@@ -548,10 +548,6 @@ def main():
         #else:
         #    import shutil
         #    shutil.copy(imgpath, '/home/duino/Videos/3/disdata/negetive/'+os.path.split(imgpath)[1] )
-
-
-        for i in range(len(boundingboxes)):
-            cv2.rectangle(img, (int(boundingboxes[i][1]), int(boundingboxes[i][0])), (int(boundingboxes[i][3]), int(boundingboxes[i][2])), (0,255,0), 1)    
 
         img = drawBoxes(img, boundingboxes)
         cv2.imshow('img', img)
