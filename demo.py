@@ -340,14 +340,14 @@ def detect_face(img, minsize, PNet, RNet, ONet, threshold, fastresize, factor):
         # construct input for RNet
         tempimg = np.zeros((numbox, 24, 24, 3)) # (24, 24, 3, numbox)
         for k in range(numbox):
-            tmp = np.zeros((tmph[k], tmpw[k],3))
+            tmp = np.zeros((int(tmph[k]), int(tmpw[k]),3))
           
             #print "dx[k], edx[k]:", dx[k], edx[k]
             #print "dy[k], edy[k]:", dy[k], edy[k]
             #print "img.shape", img[y[k]:ey[k]+1, x[k]:ex[k]+1].shape
             #print "tmp.shape", tmp[dy[k]:edy[k]+1, dx[k]:edx[k]+1].shape
 
-            tmp[dy[k]:edy[k]+1, dx[k]:edx[k]+1] = img[y[k]:ey[k]+1, x[k]:ex[k]+1]
+            tmp[int(dy[k]):int(edy[k])+1, int(dx[k]):int(edx[k])+1] = img[int(y[k]):int(ey[k])+1, int(x[k]):int(ex[k])+1]
             #print "y,ey,x,ex", y[k], ey[k], x[k], ex[k]
             #print "tmp", tmp.shape
             
@@ -424,8 +424,8 @@ def detect_face(img, minsize, PNet, RNet, ONet, threshold, fastresize, factor):
 
             tempimg = np.zeros((numbox, 48, 48, 3))
             for k in range(numbox):
-                tmp = np.zeros((tmph[k], tmpw[k],3))
-                tmp[dy[k]:edy[k]+1, dx[k]:edx[k]+1] = img[y[k]:ey[k]+1, x[k]:ex[k]+1]
+                tmp = np.zeros((int(tmph[k]), int(tmpw[k]),3))
+                tmp[int(dy[k]):int(edy[k])+1, int(dx[k]):int(edx[k])+1] = img[int(y[k]):int(ey[k])+1, int(x[k]):int(ex[k])+1]
                 tempimg[k,:,:,:] = cv2.resize(tmp, (48, 48))
             tempimg = (tempimg-127.5)*0.0078125 # [0,255] -> [-1,1]
                 
